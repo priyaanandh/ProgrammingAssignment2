@@ -9,6 +9,7 @@ cachematrix <- function(x = matrix()) {
        x<<-y
        m<<-NULL
   }
+  
   get<-function() x
   setmatrix<-function(solve) m<<- solve
   getmatrix<-function() m
@@ -19,19 +20,23 @@ cachematrix <- function(x = matrix()) {
 
 
 
-## Function cachesolve
 
-## Check for Result in cache
+## Function cachesolve
+## Check for change in data
 ## If cache does not have result compute and return the result
 
 
 cacheSolve <- function(x, ...) {
         
   m<-x$getmatrix()
+  
+## if result already exists retrieve from   cache
   if(!is.null(m)){
     message("getting cached data")
     return(m)
   }
+  
+## find the inverse of x -- no previous results in cache
   matrix<-x$get()
   m<-solve(matrix)
   
